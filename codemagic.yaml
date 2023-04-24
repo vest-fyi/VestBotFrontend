@@ -56,7 +56,7 @@ workflows:
 
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
+        track: alpha
         submit_as_draft: true
 
   ios-workflow-id:
