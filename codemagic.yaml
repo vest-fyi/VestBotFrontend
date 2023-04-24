@@ -30,7 +30,7 @@ workflows:
             # Alternatively, you can `exit 1` to fail the build
             # BUILD_NUMBER is a Codemagic built-in variable tracking the number
             # of times this workflow has been built
-              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+              UPDATED_BUILD_NUMBER=1
           else
               UPDATED_BUILD_NUMBER=$(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))
           fi
