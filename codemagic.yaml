@@ -30,8 +30,11 @@ workflows:
             # Alternatively, you can `exit 1` to fail the build
             # BUILD_NUMBER is a Codemagic built-in variable tracking the number
             # of times this workflow has been built
+              echo "setting UPDATED_BUILD_NUMBER to 1"
               UPDATED_BUILD_NUMBER=1
           else
+              echo "setting UPDATED_BUILD_NUMBER to $LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1"
+              echo "setting UPDATED_BUILD_NUMBER to $(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))"
               UPDATED_BUILD_NUMBER=$(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))
           fi
           cd android
