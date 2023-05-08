@@ -4,7 +4,7 @@ import {
     IonFooter,
     IonHeader,
     IonRouterOutlet,
-    IonSplitPane,
+    IonSplitPane, IonText,
     IonTitle,
     setupIonicReact
 } from '@ionic/react';
@@ -94,11 +94,16 @@ function App() {
         <Authenticator signUpAttributes={[
             'name',
             'phone_number',
+            'birthdate'
         ]}>
             {({ signOut, user }) => (
                 <IonApp>
                     <IonHeader>
-                        <IonTitle>Hello, {user?.username}</IonTitle>
+                        <IonTitle>Hello, {user?.attributes?.name}</IonTitle>
+                        <IonText>Your email is {user?.attributes?.email}</IonText>
+                        <IonText>Your phone number is {user?.attributes?.phone_number}</IonText>
+                        <IonText>Your birthday is {user?.attributes?.birthdate}</IonText>
+                        <IonText>Your picture is {user?.attributes?.picture}</IonText>
                     </IonHeader>
                     <IonFooter>
                         <IonButton onClick={signOut}>Sign out</IonButton>
