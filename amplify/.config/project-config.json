@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "VestBotFrontend",
+  "projectName": "Vestbeta",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {

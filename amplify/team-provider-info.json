@@ -1,44 +1,19 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplify345bd443078b4-staging-82159-authRole",
-      "UnauthRoleArn": "arn:aws:iam::617475301708:role/amplify-amplify345bd443078b4-staging-82159-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::617475301708:role/amplify-amplify345bd443078b4-staging-82159-authRole",
+      "AuthRoleName": "amplify-vestbotbeta-staging-34629-authRole",
+      "UnauthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-amplify345bd443078b4-staging-82159-deployment",
-      "UnauthRoleName": "amplify-amplify345bd443078b4-staging-82159-unauthRole",
-      "StackName": "amplify-amplify345bd443078b4-staging-82159",
-      "StackId": "arn:aws:cloudformation:us-west-2:617475301708:stack/amplify-amplify345bd443078b4-staging-82159/3cd53b80-ecb0-11ed-a3df-0ab24b11335b",
-      "AmplifyAppId": "d30687qx5kw0rt"
+      "DeploymentBucketName": "amplify-vestbotbeta-staging-34629-deployment",
+      "UnauthRoleName": "amplify-vestbotbeta-staging-34629-unauthRole",
+      "StackName": "amplify-vestbotbeta-staging-34629",
+      "StackId": "arn:aws:cloudformation:us-west-2:387329047680:stack/amplify-vestbotbeta-staging-34629/eabf4c20-ed52-11ed-a2f1-068e52e3ef0d",
+      "AmplifyAppId": "d2irsdz0atrss"
     },
     "categories": {
       "auth": {
-        "vestbotfrontend2d8c6c66": {}
-      }
-    }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-vestbotfrontend-dev-162832-authRole",
-      "UnauthRoleArn": "arn:aws:iam::617475301708:role/amplify-vestbotfrontend-dev-162832-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::617475301708:role/amplify-vestbotfrontend-dev-162832-authRole",
-      "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-vestbotfrontend-dev-162832-deployment",
-      "UnauthRoleName": "amplify-vestbotfrontend-dev-162832-unauthRole",
-      "StackName": "amplify-vestbotfrontend-dev-162832",
-      "StackId": "arn:aws:cloudformation:us-west-2:617475301708:stack/amplify-vestbotfrontend-dev-162832/a9957ee0-ea55-11ed-9779-06456c7e6a09",
-      "AmplifyAppId": "d30687qx5kw0rt"
-    },
-    "categories": {
-      "auth": {
-        "vestbotfrontend0078fc06": {}
-      },
-      "function": {
-        "vestbotfrontend0078fc06CustomMessage": {
-          "REDIRECTURL": "http://localhost:8100/",
-          "EMAILSUBJECT": "Vest Confirmation",
-          "EMAILMESSAGE": "Thank you for signing up to Vest. Click on this link to finish your sign up"
-        }
+        "vestbeta5d62a71a": {}
       }
     }
   }

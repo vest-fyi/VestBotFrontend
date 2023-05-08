@@ -126,11 +126,7 @@ function App({ isPassedToWithAuthenticator, signOut, user }: AppProps) {
 
 }
 
-export default withAuthenticator(App, {
-    signUpConfig: {
-        hiddenDefaults: [ 'phone_number' ]
-    }
-});
+export default withAuthenticator(App);
 
 export async function getStaticProps() {
     return {
