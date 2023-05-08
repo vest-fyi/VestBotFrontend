@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "vestbeta5d62a71a_identitypool_5d62a71a",
+    "identityPoolName": "vestgamma494896e6_identitypool_494896e6",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "vestbe5d62a71a",
-    "userPoolName": "vestbeta5d62a71a_userpool_5d62a71a",
+    "resourceNameTruncated": "vestga494896e6",
+    "userPoolName": "vestgamma494896e6_userpool_494896e6",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "vestbe5d62a71a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "vestga494896e6_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "5d62a71a",
-    "resourceName": "vestbeta5d62a71a",
+    "sharedId": "494896e6",
+    "resourceName": "vestgamma494896e6",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "defaultSocial",
     "hostedUI": true,
@@ -42,7 +42,7 @@
       "phone_number"
     ],
     "triggers": {},
-    "hostedUIDomainName": "vestbeta5d62a71a-5d62a71a",
+    "hostedUIDomainName": "vestgamma494896e6-494896e6",
     "authProvidersUserPool": [
       "Facebook",
       "Google",

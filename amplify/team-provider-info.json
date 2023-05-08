@@ -1,19 +1,19 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-vestbotbeta-staging-34629-authRole",
-      "UnauthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-authRole",
+      "AuthRoleName": "amplify-vestgamma-staging-34909-authRole",
+      "UnauthRoleArn": "arn:aws:iam::670435147301:role/amplify-vestgamma-staging-34909-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::670435147301:role/amplify-vestgamma-staging-34909-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-vestbotbeta-staging-34629-deployment",
-      "UnauthRoleName": "amplify-vestbotbeta-staging-34629-unauthRole",
-      "StackName": "amplify-vestbotbeta-staging-34629",
-      "StackId": "arn:aws:cloudformation:us-west-2:387329047680:stack/amplify-vestbotbeta-staging-34629/eabf4c20-ed52-11ed-a2f1-068e52e3ef0d",
-      "AmplifyAppId": "d2irsdz0atrss"
+      "DeploymentBucketName": "amplify-vestgamma-staging-34909-deployment",
+      "UnauthRoleName": "amplify-vestgamma-staging-34909-unauthRole",
+      "StackName": "amplify-vestgamma-staging-34909",
+      "StackId": "arn:aws:cloudformation:us-west-2:670435147301:stack/amplify-vestgamma-staging-34909/4a2683e0-ed53-11ed-83ed-0a7470c9ee1b",
+      "AmplifyAppId": "d2nbgkv74ga21f"
     },
     "categories": {
       "auth": {
-        "vestbeta5d62a71a": {}
+        "vestgamma494896e6": {}
       }
     }
   }
