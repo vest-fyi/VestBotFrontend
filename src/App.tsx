@@ -45,7 +45,7 @@ import '@aws-amplify/ui-react/styles.css';
 // @ts-ignore
 import awsExports from './aws-exports';
 import { Amplify } from 'aws-amplify';
-
+import { Authenticator } from '@aws-amplify/ui-react';
 
 const isLocalhost = Boolean(
     window.location.hostname === 'localhost' ||
@@ -75,9 +75,7 @@ const updatedAwsConfig = {
         redirectSignIn: isLocalhost ? localRedirectSignIn : productionRedirectSignIn,
         redirectSignOut: isLocalhost ? localRedirectSignOut : productionRedirectSignOut,
     }
-}
-
-
+};
 
 Amplify.configure(awsExports);
 
@@ -87,51 +85,51 @@ interface AppProps extends WithAuthenticatorProps {
 
 setupIonicReact();
 
-function App({ isPassedToWithAuthenticator, signOut, user }: AppProps) {
+function App() {
     // if (!isPassedToWithAuthenticator) {
     //     throw new Error(`isPassedToWithAuthenticator was not provided`);
     // }
 
     return (
-        <IonApp>
-            <IonHeader>
-                <IonTitle>Hello, {user?.username}</IonTitle>
-            </IonHeader>
-            <IonFooter>
-                <IonButton onClick={signOut}>Sign out</IonButton>
-            </IonFooter>
+        <Authenticator signUpAttributes={[
+            'name',
+            'phone_number',
+        ]}>
+            {({ signOut, user }) => (
+                <IonApp>
+                    <IonHeader>
+                        <IonTitle>Hello, {user?.username}</IonTitle>
+                    </IonHeader>
+                    <IonFooter>
+                        <IonButton onClick={signOut}>Sign out</IonButton>
+                    </IonFooter>
 
-            <IonReactRouter>
-                <IonSplitPane contentId="main">
-                    <Menu/>
-                    <IonRouterOutlet id="main">
-                        <Route exact path="/home">
-                            <Home />
-                        </Route>
-                        <Route exact path="/">
-                            <Redirect to="/home" />
-                        </Route>
-                        {/*<Route path="/" exact={true}>*/}
-                        {/*    <Redirect to="/page/Inbox"/>*/}
-                        {/*</Route>*/}
-                        {/*<Route path="/page/:name" exact={true}>*/}
-                        {/*    <Page/>*/}
-                        {/*</Route>*/}
-                    </IonRouterOutlet>
-                </IonSplitPane>
-            </IonReactRouter>
+                    <IonReactRouter>
+                        <IonSplitPane contentId="main">
+                            <Menu/>
+                            <IonRouterOutlet id="main">
+                                <Route exact path="/home">
+                                    <Home/>
+                                </Route>
+                                <Route exact path="/">
+                                    <Redirect to="/home"/>
+                                </Route>
+                                {/*<Route path="/" exact={true}>*/}
+                                {/*    <Redirect to="/page/Inbox"/>*/}
+                                {/*</Route>*/}
+                                {/*<Route path="/page/:name" exact={true}>*/}
+                                {/*    <Page/>*/}
+                                {/*</Route>*/}
+                            </IonRouterOutlet>
+                        </IonSplitPane>
+                    </IonReactRouter>
 
-        </IonApp>
+
+                </IonApp>
+            )}
+        </Authenticator>
+
     );
-
 }
 
-export default withAuthenticator(App);
-
-export async function getStaticProps() {
-    return {
-        props: {
-            isPassedToWithAuthenticator: true,
-        },
-    };
-}
+export default App;
