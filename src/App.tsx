@@ -99,6 +99,7 @@ function App() {
             {({ signOut, user }) => (
                 <IonApp>
                     <IonHeader>
+                        <IonTitle>Hello, your user ID is {user?.username}</IonTitle>
                         <IonTitle>Hello, {user?.attributes?.name}</IonTitle>
                         <IonText>Your email is {user?.attributes?.email}</IonText>
                         <IonText>Your phone number is {user?.attributes?.phone_number}</IonText>
@@ -116,6 +117,9 @@ function App() {
                                 <Route exact path="/home">
                                     <Home/>
                                 </Route>
+                                <Route exact path="/main">
+                                    <Page/>
+                                </Route>
                                 <Route exact path="/">
                                     <Redirect to="/home"/>
                                 </Route>
@@ -128,8 +132,6 @@ function App() {
                             </IonRouterOutlet>
                         </IonSplitPane>
                     </IonReactRouter>
-
-
                 </IonApp>
             )}
         </Authenticator>

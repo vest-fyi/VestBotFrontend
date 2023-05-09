@@ -8,7 +8,7 @@ const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
 
-  const directLine = useMemo(() => createDirectLine({ secret: '8tQBKXPlY0I.f91gY5oLRdu4U0_oN_fhsJp7YrP4m_7PLb36XtdM0Wc' }), []);
+  const directLine = useMemo(() => createDirectLine({ secret: '89Et2XauBY8.6IpmRylqRtyyFdIyL800zI66bclIE6Zjj-AN7Wgtsj0' }), []);
 
   return (
     <IonPage>
