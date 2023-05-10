@@ -1,10 +1,12 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 import { useMemo } from 'react';
-import './Page.css';
+import './Main.css';
 
 const Main: React.FC = () => {
     const directLine = useMemo(() => createDirectLine({ secret: '89Et2XauBY8.6IpmRylqRtyyFdIyL800zI66bclIE6Zjj-AN7Wgtsj0' }), []);
+
+    console.log('directLine obj is', JSON.stringify(directLine));
 
     return (
         <IonPage>
