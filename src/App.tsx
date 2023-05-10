@@ -21,19 +21,39 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { Amplify } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 
 // @ts-expect-error - aws-exports is not typed
 import awsExports from "./aws-exports";
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { Main } from './pages/Main';
+import { useEffect } from 'react';
+
+// rename the imported App from @capacitor/app to avoid confusion with our own App component
+import {App as CapacitorApp} from '@capacitor/app';
+import { Browser } from '@capacitor/browser';
 
 Amplify.configure(awsExports);
 
 setupIonicReact();
 
 const App: React.FC = () => {
+    // // Get the callback handler from the Auth0 React hook
+    // const { handleRedirectCallback } = useAuth0();
+
+
+    useEffect(() => {
+        // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+        CapacitorApp.addListener('appUrlOpen', async (data: any) => {
+            console.log('appUrlOpened: ', data.url);
+            console.log(await (Auth as any)._handleAuthResponse(data.url.replace('capacitor://', 'http://')))
+
+            // No-op on Android
+            await Browser.close();
+        });
+    }, []);
+
     return (
         <IonApp>
             <Authenticator signUpAttributes={[
