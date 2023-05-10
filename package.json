@@ -12,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@aws-amplify/ui": "^5.6.1",
     "@aws-amplify/ui-react": "^4.6.1",
     "@capacitor/android": "5.0.2",
     "@capacitor/app": "5.0.2",
