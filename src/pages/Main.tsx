@@ -1,5 +1,5 @@
 import { AmplifyUser } from '@aws-amplify/ui';
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 import { useMemo } from 'react';
 import './Main.css';
@@ -21,16 +21,16 @@ export const Main: React.FC<MainProp> = ({ user}) => {
                         <IonMenuButton/>
                     </IonButtons>
                     <IonTitle> Main Screen </IonTitle>
-                    <IonTitle>Hello, your user ID is {user?.username}</IonTitle>
-                    <IonTitle>Hello, {user?.attributes?.name}</IonTitle>
-                    <IonTitle>Your email is {user?.attributes?.email}</IonTitle>
-                    <IonTitle>Your phone number is {user?.attributes?.phone_number}</IonTitle>
-                    <IonTitle>Your birthday is {user?.attributes?.birthdate}</IonTitle>
-                    <IonTitle>Your picture is {user?.attributes?.picture}</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent fullscreen>
+                <IonText>Hello, your user ID is {user?.username}</IonText>
+                <IonText>Hello, {user?.attributes?.name}</IonText>
+                <IonText>Your email is {user?.attributes?.email}</IonText>
+                <IonText>Your phone number is {user?.attributes?.phone_number}</IonText>
+                <IonText>Your birthday is {user?.attributes?.birthdate}</IonText>
+                <IonText>Your picture is {user?.attributes?.picture}</IonText>
                 <ReactWebChat directLine={directLine}/>
             </IonContent>
 
