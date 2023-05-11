@@ -25,7 +25,7 @@ import { Amplify, Auth } from 'aws-amplify';
 
 // @ts-expect-error - aws-exports is not typed
 import awsExports from "./aws-exports";
-import { Authenticator } from '@aws-amplify/ui-react';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { Main } from './pages/Main';
 import { useEffect } from 'react';
@@ -39,20 +39,25 @@ Amplify.configure(awsExports);
 setupIonicReact();
 
 const App: React.FC = () => {
+    // TODO: close browser when browser redirects to app URI after social sign in. get user state to skip authenticator
+    // reference: https://ui.docs.amplify.aws/react/connected-components/authenticator/advanced
+    // sample: https://github.com/aws-amplify/amplify-ui/issues/1977
+
     // // Get the callback handler from the Auth0 React hook
     // const { handleRedirectCallback } = useAuth0();
-
-
-    useEffect(() => {
-        // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
-        CapacitorApp.addListener('appUrlOpen', async (data: any) => {
-            console.log('appUrlOpened: ', data.url);
-            console.log(await (Auth as any)._handleAuthResponse(data.url.replace('capacitor://', 'http://')))
-
-            // No-op on Android
-            await Browser.close();
-        });
-    }, []);
+    //
+    // const { authStatus } = useAuthenticator(context => [context.authStatus]);
+    //
+    // useEffect(() => {
+    //     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+    //     CapacitorApp.addListener('appUrlOpen', async (data: any) => {
+    //         console.log('appUrlOpened: ', data.url);
+    //         console.log(await (Auth as any)._handleAuthResponse(data.url.replace('capacitor://', 'http://')))
+    //
+    //         // No-op on Android
+    //         await Browser.close();
+    //     });
+    // }, []);
 
     return (
         <IonApp>
@@ -77,7 +82,6 @@ const App: React.FC = () => {
                     </IonReactRouter>
                 )}
             </Authenticator>
-
         </IonApp>
     );
 };

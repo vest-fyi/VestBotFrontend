@@ -7,7 +7,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   define: {
     // in development, amplifyjs relies on webpack or similar somewhere so we need to add this for now
-    global: {},
+    global: "global",
   },
   // there's an issue with vite and amplifyjs that requires the following below (https://github.com/aws-amplify/amplify-js/issues/9639)
   resolve: {
