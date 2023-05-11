@@ -16,8 +16,8 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "http://localhost:8100/",
-        "redirectSignOut": "http://localhost:8100/",
+        "redirectSignIn": "fyi.vest.app://",
+        "redirectSignOut": "fyi.vest.app://",
         "responseType": "code"
     },
     "federationTarget": "COGNITO_USER_POOLS",

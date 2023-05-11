@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package fyi.vest.app;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -1,17 +1,7 @@
-import {
-    IonApp,
-    IonButton,
-    IonFooter,
-    IonHeader,
-    IonRouterOutlet,
-    IonSplitPane,
-    IonTitle,
-    setupIonicReact
-} from '@ionic/react';
+import { IonApp, IonButton, IonFooter, IonHeader, IonRouterOutlet, IonSplitPane, IonTitle, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,105 +21,69 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Home from './pages/Home';
-import React from 'react';
+import { Amplify, Auth } from 'aws-amplify';
 
+// @ts-expect-error - aws-exports is not typed
+import awsExports from "./aws-exports";
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { Main } from './pages/Main';
+import { useEffect } from 'react';
 
-import {
-    withAuthenticator,
-    WithAuthenticatorProps,
-} from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-
-// @ts-ignore
-import awsExports from './aws-exports';
-import { Amplify } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
-
-const isLocalhost = Boolean(
-    window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
-
-// Assuming you have two redirect URIs, and the first is for localhost and second is for production
-const [
-    localRedirectSignIn,
-    productionRedirectSignIn,
-] = awsExports.oauth.redirectSignIn.split(',');
-
-const [
-    localRedirectSignOut,
-    productionRedirectSignOut,
-] = awsExports.oauth.redirectSignOut.split(',');
-
-const updatedAwsConfig = {
-    ...awsExports,
-    oauth: {
-        ...awsExports.oauth,
-        redirectSignIn: isLocalhost ? localRedirectSignIn : productionRedirectSignIn,
-        redirectSignOut: isLocalhost ? localRedirectSignOut : productionRedirectSignOut,
-    }
-};
+// rename the imported App from @capacitor/app to avoid confusion with our own App component
+import {App as CapacitorApp} from '@capacitor/app';
+import { Browser } from '@capacitor/browser';
 
 Amplify.configure(awsExports);
 
-interface AppProps extends WithAuthenticatorProps {
-    isPassedToWithAuthenticator: boolean;
-}
-
 setupIonicReact();
 
-function App() {
-    // if (!isPassedToWithAuthenticator) {
-    //     throw new Error(`isPassedToWithAuthenticator was not provided`);
-    // }
+const App: React.FC = () => {
+    // TODO: close browser when browser redirects to app URI after social sign in. get user state to skip authenticator
+    // reference: https://ui.docs.amplify.aws/react/connected-components/authenticator/advanced
+    // sample: https://github.com/aws-amplify/amplify-ui/issues/1977
+
+    // // Get the callback handler from the Auth0 React hook
+    // const { handleRedirectCallback } = useAuth0();
+    //
+    // const { authStatus } = useAuthenticator(context => [context.authStatus]);
+    //
+    // useEffect(() => {
+    //     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+    //     CapacitorApp.addListener('appUrlOpen', async (data: any) => {
+    //         console.log('appUrlOpened: ', data.url);
+    //         console.log(await (Auth as any)._handleAuthResponse(data.url.replace('capacitor://', 'http://')))
+    //
+    //         // No-op on Android
+    //         await Browser.close();
+    //     });
+    // }, []);
 
     return (
-        <Authenticator signUpAttributes={[
-            'name',
-            'phone_number',
-        ]}>
-            {({ signOut, user }) => (
-                <IonApp>
-                    <IonHeader>
-                        <IonTitle>Hello, {user?.username}</IonTitle>
-                    </IonHeader>
-                    <IonFooter>
-                        <IonButton onClick={signOut}>Sign out</IonButton>
-                    </IonFooter>
-
+        <IonApp>
+            <Authenticator signUpAttributes={[
+                'name',
+                'phone_number',
+                'birthdate'
+            ]} variation="modal">
+                {({ signOut, user }) => (
                     <IonReactRouter>
                         <IonSplitPane contentId="main">
                             <Menu/>
                             <IonRouterOutlet id="main">
-                                <Route exact path="/home">
-                                    <Home/>
+                                <Route path="/home" exact={true}>
+                                    <Main user={user!} />
                                 </Route>
-                                <Route exact path="/">
+                                <Route path="/" exact={true}>
                                     <Redirect to="/home"/>
                                 </Route>
-                                {/*<Route path="/" exact={true}>*/}
-                                {/*    <Redirect to="/page/Inbox"/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/page/:name" exact={true}>*/}
-                                {/*    <Page/>*/}
-                                {/*</Route>*/}
                             </IonRouterOutlet>
                         </IonSplitPane>
                     </IonReactRouter>
-
-
-                </IonApp>
-            )}
-        </Authenticator>
-
+                )}
+            </Authenticator>
+        </IonApp>
     );
-}
+};
 
 export default App;
