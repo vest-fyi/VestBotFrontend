@@ -32,22 +32,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import { Main } from './pages/Main';
-import { AmplifyUser } from '@aws-amplify/ui';
 
 setupIonicReact();
 
 const App: React.FC = () => {
-    const user = {
-        username: 'STUB-USER-ID',
-        attributes: {
-            name: 'STUB-USER-NAME',
-            email: 'STUB-USER-EMAIL',
-            phone_number: 'STUB-USER-PHONE-NUMBER',
-            birthdate: 'STUB-USER-BIRTHDATE',
-            // picture: 'STUB-USER-PICTURE-URL'
-        }
-    } as unknown as AmplifyUser;
-
     return (
         <IonApp>
             <IonReactRouter>
@@ -55,7 +43,7 @@ const App: React.FC = () => {
                     <Menu/>
                     <IonRouterOutlet id="main">
                         <Route path="/home" exact={true}>
-                            <Main user={user!}/>
+                            <Main/>
                         </Route>
                         <Route path="/" exact={true}>
                             <Redirect to="/home"/>

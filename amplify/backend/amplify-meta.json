@@ -1,0 +1,65 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vestbotbeta-staging-34629-authRole",
+      "UnauthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::387329047680:role/amplify-vestbotbeta-staging-34629-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-vestbotbeta-staging-34629-deployment",
+      "UnauthRoleName": "amplify-vestbotbeta-staging-34629-unauthRole",
+      "StackName": "amplify-vestbotbeta-staging-34629",
+      "StackId": "arn:aws:cloudformation:us-west-2:387329047680:stack/amplify-vestbotbeta-staging-34629/eabf4c20-ed52-11ed-a2f1-068e52e3ef0d",
+      "AmplifyAppId": "d2irsdz0atrss"
+    }
+  },
+  "auth": {
+    "vestbeta5d62a71a": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "NAME"
+        ],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE",
+          "APPLE"
+        ],
+        "usernameAttributes": [
+          "PHONE_NUMBER"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "CreatedSNSRole": "arn:aws:iam::387329047680:role/sns5d62a71a34629-staging",
+        "UserPoolId": "us-west-2_ShAMmmqgK",
+        "AppClientIDWeb": "46ddvlkpgukk3mclta13vld96q",
+        "AppClientID": "5j0tb2mf0ksiug9sgnq8nqkelm",
+        "HostedUIDomain": "vestbeta5d62a71a-5d62a71a-staging",
+        "IdentityPoolId": "us-west-2:f5984767-53d4-4a72-bdbe-0cc698df733d",
+        "UserPoolArn": "arn:aws:cognito-idp:us-west-2:387329047680:userpool/us-west-2_ShAMmmqgK",
+        "IdentityPoolName": "vestbeta5d62a71a_identitypool_5d62a71a__staging",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"fyi.vest.app://\"],\"LogoutURLs\":[\"fyi.vest.app://\"]}",
+        "UserPoolName": "vestbeta5d62a71a_userpool_5d62a71a"
+      },
+      "lastPushTimeStamp": "2023-05-10T06:40:47.555Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vestbotbeta-staging-34629-deployment/amplify-cfn-templates/auth/vestbeta5d62a71a-cloudformation-template.json",
+        "logicalId": "authvestbeta5d62a71a"
+      },
+      "lastPushDirHash": "NNORSJCkTtbQ+AcwTZuwiSHLyjs="
+    }
+  }
+}

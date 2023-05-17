@@ -1,4 +1,3 @@
-import { AmplifyUser } from '@aws-amplify/ui';
 import {
     InputChangeEventDetail, IonButton,
     IonButtons,
@@ -10,26 +9,38 @@ import {
     IonText,
     IonToolbar
 } from '@ionic/react';
-import ReactWebChat, { createDirectLine } from 'botframework-webchat';
+import ReactWebChat, { createDirectLine, hooks } from 'botframework-webchat';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './Main.css';
 import { Preferences } from '@capacitor/preferences';
+import { App } from '@capacitor/app';
+import { BackgroundTask } from '@capawesome/capacitor-background-task';
+import Composer from 'botframework-webchat-component/lib/Composer';
+import BasicWebChat from 'botframework-webchat-component/lib/BasicWebChat';
 
-export interface MainProp {
-    user: AmplifyUser;
-    emailFromStorage?: string;
-}
-
-export const Main: React.FC<MainProp> = ({ user }) => {
+export const Main: React.FC = () => {
     const [ isLoading, setIsLoading ] = useState(true);
 
     // -------------------
     // Bot Framework Web Chat Config
     // -------------------
-    const directLine = useMemo(() => createDirectLine({
-        // secret: '89Et2XauBY8.NLUFJiExmvbNiPLmpG51ECssq6LqV1WvHoatqEY_q-A'
-        secret: '89Et2XauBY8.6IpmRylqRtyyFdIyL800zI66bclIE6Zjj-AN7Wgtsj0'
-    }), []);
+    let secret: string;
+    switch (import.meta.env.VITE_STAGE) {
+        case 'local':
+            // secret = 'zJUsj4KeL1A.0jzAbVoRak8l8uRgUUyCMWoXShGj8Up4ewR3_eityX4';
+            secret = 'zJUsj4KeL1A.AgunaiRg-pspAKxuRp2iYqqOJF6B6fw0J-Zh_3SNI5g';
+            break;
+        case 'beta':
+            // secret: '89Et2XauBY8.NLUFJiExmvbNiPLmpG51ECssq6LqV1WvHoatqEY_q-A'
+            secret: '89Et2XauBY8.6IpmRylqRtyyFdIyL800zI66bclIE6Zjj-AN7Wgtsj0';
+            break;
+        case 'gamma':
+        case 'prod':
+        default:
+            secret = 'INVALID';
+            break;
+    }
+    const directLine = useMemo(() => createDirectLine({ secret }), []);
 
     const styleOptions = {
         bubbleBackground: '#F2F2F2',
@@ -85,6 +96,27 @@ export const Main: React.FC<MainProp> = ({ user }) => {
         setShowEmailPrompt(false);
     };
 
+    // -------------------
+    // Send transcript when app is closed
+    // -------------------
+    App.addListener('appStateChange', async ({ isActive }) => {
+        if (isActive) {
+            return;
+        }
+
+        const taskId = await BackgroundTask.beforeExit(async () => {
+            console.log('Sending transcript before app close');
+
+            const { useSendMessage } = hooks;
+            const sendMessage = useSendMessage();
+            sendMessage(JSON.stringify({
+                feedback: 'NONE'
+            }));
+
+            BackgroundTask.finish({ taskId });
+        });
+    });
+
     return (
         <IonPage>
             <IonHeader>
@@ -113,12 +145,20 @@ export const Main: React.FC<MainProp> = ({ user }) => {
                 ) : (
                     <IonContent scrollY={false}>
                         {
-                            email ? <ReactWebChat
-                                    directLine={directLine}
-                                    styleOptions={styleOptions}
-                                    userID={email}
-                                />
-                                : <IonText>Please provide your email address to continue</IonText>
+                            email ?
+                                // <ReactWebChat
+                                //     directLine={directLine}
+                                //     styleOptions={styleOptions}
+                                //     userID={email}
+                                // />
+                                <Composer directLine={directLine}
+                                          styleOptions={styleOptions}
+                                            userID={email}
+                                >
+                                    <BasicWebChat />
+                                </Composer>
+
+                            : <IonText>Please provide your email address to continue</IonText>
                         }
                         <IonModal ref={modal}
                                   isOpen={showEmailPrompt}
